@@ -14,12 +14,15 @@ namespace Arr.ViewModuleSystem
 
         protected readonly string viewName = typeof(T).Name.ToLower();
 
-        protected override async Task OnLoad()
+        protected override async Task OnInitialize()
         {
             var prefab = ViewPrefabDatabase.Get(viewName);
             view = Object.Instantiate(prefab).GetComponent<T>();
             view.gameObject.SetActive(view.ActiveOnSpawn);
+        }
 
+        protected override async Task OnLoad()
+        {
             await view.Load();
         }
 
