@@ -29,6 +29,7 @@ namespace Arr.ViewModuleSystem
         protected override async Task OnUnload()
         {
             await view.Unload();
+            Object.Destroy(view.gameObject);
         }
 
         public void OnEvent(EventOpenView<T> data)
